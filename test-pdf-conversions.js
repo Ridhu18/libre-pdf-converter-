@@ -3,7 +3,7 @@ const path = require('path');
 const fetch = require('node-fetch');
 const FormData = require('form-data');
 
-const LIBRE_URL = 'https://libre-pdf-converter.onrender.com';
+const LIBRE_URL = 'http://localhost:3002';
 
 async function testPdfConversions() {
   console.log('🧪 Testing Libre PDF Converter - PDF Conversions...\n');
@@ -19,7 +19,7 @@ async function testPdfConversions() {
       console.log(`   Service: ${healthData.service}`);
       console.log(`   Version: ${healthData.version}`);
       console.log(`   Features: ${healthData.features.join(', ')}`);
-      console.log(`   Endpoints: ${healthData.endpoints.length} available`);
+      console.log(`   Endpoints: ${healthData.endpoints ? healthData.endpoints.length : 0} available`);
     } else {
       console.log('❌ Health check failed');
       return;
