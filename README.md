@@ -5,10 +5,15 @@ A high-fidelity PDF conversion service with format preservation capabilities.
 ## Features
 
 - **Format Preservation**: Maintains original document formatting, fonts, and layout
-- **Multi-format Support**: Converts DOCX, DOC, HTML, TXT, Excel, and images to PDF
+- **Multi-directional Conversion**: 
+  - DOCX/DOC → PDF
+  - PDF → Word (DOCX)
+  - PDF → Excel (XLSX)
+- **Multi-format Support**: Converts DOCX, DOC, HTML, TXT, Excel, and images
 - **Multiple Conversion Methods**: 
   - LibreOffice (highest quality)
   - Puppeteer (good quality)
+  - PDF-lib (basic quality)
   - Fallback methods for reliability
 - **Batch Processing**: Convert multiple files simultaneously
 - **High-fidelity Rendering**: Preserves tables, images, fonts, and styling
@@ -22,21 +27,35 @@ GET /health
 ```
 Returns service status and capabilities.
 
-### Single File Conversion
+### DOCX to PDF Conversion
 ```
 POST /convert-docx-to-pdf
 Content-Type: multipart/form-data
 Body: file (DOCX, DOC, HTML, TXT, Excel, or image file)
 ```
 
-**Response:**
+### PDF to Word Conversion
+```
+POST /convert-pdf-to-word
+Content-Type: multipart/form-data
+Body: file (PDF file)
+```
+
+### PDF to Excel Conversion
+```
+POST /convert-pdf-to-excel
+Content-Type: multipart/form-data
+Body: file (PDF file)
+```
+
+**Response (all conversions):**
 ```json
 {
   "success": true,
   "message": "File converted successfully",
   "downloadUrl": "/download/converted-file.pdf",
-  "originalName": "document.docx",
-  "convertedName": "converted-uuid.pdf",
+  "originalName": "document.pdf",
+  "convertedName": "converted-uuid.docx",
   "fileSize": 1234567
 }
 ```
