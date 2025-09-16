@@ -1,21 +1,21 @@
 FROM node:18-alpine
 
-# Install LibreOffice and dependencies
+# Install LibreOffice and basic dependencies
 RUN apk add --no-cache \
     libreoffice \
     font-noto \
     font-noto-cjk \
-    font-noto-emoji \
     font-liberation \
     font-dejavu \
     font-freefont \
     chromium \
     nss \
     freetype \
-    freetype-dev \
-    harfbuzz \
     ca-certificates \
     ttf-freefont \
+    python3 \
+    make \
+    g++ \
     && rm -rf /var/cache/apk/*
 
 # Set Puppeteer to use system Chromium
